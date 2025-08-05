@@ -127,6 +127,27 @@ class PaymentSystem {
         if (buyButton) {
             buyButton.addEventListener('click', (e) => {
                 e.preventDefault();
+                
+                // Facebook Pixel - Button Click Event
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'CustomEvent', {
+                        event_name: 'button_click',
+                        button_name: 'compre_agora',
+                        content_name: 'Diamantes Free Fire',
+                        content_category: 'Games'
+                    });
+                    console.log('✅ Facebook Pixel: Button click event tracked');
+                }
+                
+                // UTMify Pixel - Button Click Event
+                if (typeof window.utmifyPixel !== 'undefined') {
+                    window.utmifyPixel.track('button_click', {
+                        button_name: 'compre_agora',
+                        content_name: 'Diamantes Free Fire'
+                    });
+                    console.log('✅ UTMify Pixel: Button click event tracked');
+                }
+                
                 this.openPixPayment();
             });
         }
@@ -516,6 +537,29 @@ class PaymentSystem {
         // Remove loading do modal
         this.hideModalLoading();
         
+        // Facebook Pixel - PIX Generated Event
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'CustomEvent', {
+                event_name: 'pix_generated',
+                value: this.currentPrice,
+                currency: 'BRL',
+                content_name: 'Diamantes Free Fire',
+                content_category: 'Games',
+                transaction_id: pixData.transactionId || pixData.id
+            });
+            console.log('✅ Facebook Pixel: PIX generated event tracked');
+        }
+        
+        // UTMify Pixel - PIX Generated Event
+        if (typeof window.utmifyPixel !== 'undefined') {
+            window.utmifyPixel.track('pix_generated', {
+                value: this.currentPrice,
+                currency: 'BRL',
+                transaction_id: pixData.transactionId || pixData.id
+            });
+            console.log('✅ UTMify Pixel: PIX generated event tracked');
+        }
+        
         // Remove qualquer aviso anterior
         const existingWarning = document.querySelector('#pixPaymentSection div[style*="background-color: #fef3c7"]');
         if (existingWarning) {
@@ -819,6 +863,27 @@ class PaymentSystem {
         const pixCodeInput = document.getElementById('pixCode');
         if (pixCodeInput) {
             const textToCopy = pixCodeInput.value;
+            
+            // Facebook Pixel - Copy PIX Code Event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'CustomEvent', {
+                    event_name: 'pix_code_copied',
+                    value: this.currentPrice,
+                    currency: 'BRL',
+                    content_name: 'Diamantes Free Fire',
+                    content_category: 'Games'
+                });
+                console.log('✅ Facebook Pixel: PIX code copied event tracked');
+            }
+            
+            // UTMify Pixel - Copy PIX Code Event
+            if (typeof window.utmifyPixel !== 'undefined') {
+                window.utmifyPixel.track('pix_code_copied', {
+                    value: this.currentPrice,
+                    currency: 'BRL'
+                });
+                console.log('✅ UTMify Pixel: PIX code copied event tracked');
+            }
             
             // Tenta usar a API moderna primeiro
             if (navigator.clipboard && window.isSecureContext) {
