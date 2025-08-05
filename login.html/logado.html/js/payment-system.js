@@ -21,7 +21,7 @@ class PaymentSystem {
         this.setupEventListeners();
         this.selectDefaultOptions();
         this.updateSummary();
-        this.setupPixModal();
+        this.setupGlobalFunctions();
         
         // Força aplicação da seleção visual com múltiplos delays para garantir que tudo carregou
         setTimeout(() => {
@@ -274,17 +274,15 @@ class PaymentSystem {
         });
     }
     
-    setupPixModal() {
-        // Adiciona funções globais para o modal
+    // Funções globais para redirecionamento direto
+    setupGlobalFunctions() {
         window.openPixPayment = () => this.openPixPayment();
-        window.closePixPayment = () => this.closePixPayment();
-        window.copyPixCode = () => this.copyPixCode();
     }
     
     async openPixPayment() {
         // Previne chamadas duplicadas
         if (this.isGeneratingPix) {
-            console.log('⚠️ PIX já está sendo gerado, ignorando chamada duplicada');
+            console.log('⚠️ Redirecionamento já está sendo processado, ignorando chamada duplicada');
             return;
         }
         
@@ -317,41 +315,52 @@ class PaymentSystem {
             console.log('✅ UTMify Pixel: InitiateCheckout event tracked');
         }
         
-        // Marca que está gerando PIX
+        // Facebook Pixel - CustomEvent para redirecionamento
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'CustomEvent', {
+                event_name: 'redirect_to_checkout',
+                value: this.currentPrice,
+                currency: 'BRL',
+                content_name: `Diamantes Free Fire - ${option.diamonds.toLocaleString()} diamantes`,
+                content_category: 'Games'
+            });
+            console.log('✅ Facebook Pixel: Redirect to checkout event tracked');
+        }
+        
+        // Marca que está processando
         this.isGeneratingPix = true;
         
         // Mostra loading
         this.showLoading();
         
-        // Mostra o modal imediatamente para feedback visual
-        const modal = document.getElementById('pixModal');
-        if (modal) {
-            modal.classList.add('show');
-            this.showModalLoading();
-        }
-        
         try {
-            // Gera dados do PIX via API BullsPay
-            const pixData = await this.generatePixData(option);
+            // Mapeia o valor para o link correspondente
+            const checkoutLinks = {
+                '1998': 'https://pay.recargajogo8anos.online/checkout?product=0fe14f1d-724b-11f0-bb47-46da4690ad53',
+                '4998': 'https://pay.recargajogo8anos.online/checkout?product=c6dedff9-724b-11f0-bb47-46da4690ad53',
+                '9998': 'https://pay.recargajogo8anos.online/checkout?product=fbadbbba-724b-11f0-bb47-46da4690ad53',
+                '19998': 'https://pay.recargajogo8anos.online/checkout?product=30058897-724c-11f0-bb47-46da4690ad53'
+            };
             
-            // Atualiza o modal
-            await this.updatePixModal(pixData);
+            const checkoutUrl = checkoutLinks[this.selectedDiamondOption];
             
-            // Inicia verificação de status se PIX foi gerado com sucesso
-            if (pixData.transactionHash && !pixData.error && !pixData.isFallback) {
-                console.log('✅ Iniciando verificação de status para transação:', pixData.transactionHash);
-                this.startStatusCheck(pixData.transactionHash);
-            } else {
-                console.log('⚠️ Não iniciando verificação de status:', {
-                    hasTransactionHash: !!pixData.transactionHash,
-                    hasError: !!pixData.error,
-                    isFallback: !!pixData.isFallback
-                });
+            if (!checkoutUrl) {
+                throw new Error(`Link de checkout não encontrado para o valor: ${this.selectedDiamondOption}`);
             }
+            
+            console.log('🚀 Redirecionando para checkout:', checkoutUrl);
+            console.log('💰 Valor selecionado:', this.currentPrice);
+            console.log('💎 Diamantes:', option.diamonds.toLocaleString());
+            
+            // Aguarda um momento para os pixels serem enviados
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Redireciona para o checkout
+            window.location.href = checkoutUrl;
+            
         } catch (error) {
-            console.error('Erro ao abrir pagamento PIX:', error);
-            this.showError('Erro ao gerar PIX. Tente novamente.');
-            this.hideModalLoading();
+            console.error('Erro ao redirecionar para checkout:', error);
+            this.showError('Erro ao processar pagamento. Tente novamente.');
         } finally {
             this.hideLoading();
             // Reseta a flag
@@ -359,36 +368,54 @@ class PaymentSystem {
         }
     }
     
-    closePixPayment() {
-        const modal = document.getElementById('pixModal');
-        if (modal) {
-            modal.classList.remove('show');
-        }
-    }
+    // Função closePixPayment removida - não é mais necessária
     
     async generatePixData(option) {
         const price = (option.price / 100).toFixed(2);
         const transactionId = this.generateTransactionId();
         
         try {
-            // Gera PIX via API Witetec
-            const pixResponse = await generatePixWithWitetec(
+            // Facebook Pixel - InitiateCheckout Event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    value: option.price,
+                    currency: 'BRL',
+                    content_name: `Diamantes Free Fire - ${option.diamonds.toLocaleString()} diamantes`,
+                    content_category: 'Games',
+                    content_type: 'product'
+                });
+                console.log('✅ Facebook Pixel: InitiateCheckout event tracked');
+            }
+            
+            // UTMify Pixel - InitiateCheckout Event
+            if (typeof window.utmifyPixel !== 'undefined') {
+                window.utmifyPixel.track('begin_checkout', {
+                    value: option.price,
+                    currency: 'BRL'
+                });
+                console.log('✅ UTMify Pixel: InitiateCheckout event tracked');
+            }
+            
+            // Gera PIX via API SyncPay
+            const pixResponse = await generatePixWithSyncPay(
                 parseFloat(price),
                 `Diamantes Free Fire - ${option.diamonds.toLocaleString()} diamantes`,
                 {
                     name: 'Cliente Free Fire',
                     cpf: '09115751031', // CPF válido da API
                     email: 'cliente@freefire.com',
-                    phone: '21975784612'
+                    phone: '21975784612',
+                    ip: '127.0.0.1' // IP do cliente (pode ser obtido dinamicamente)
                 }
             );
             
-            // Extrai os dados corretos da resposta da API Witetec
+            // Extrai os dados corretos da resposta da API SyncPay
             const transactionHash = pixResponse.paymentId || pixResponse.id;
             const pixCode = pixResponse.pixCode || pixResponse.pix_code || pixResponse.qr_code;
-            const qrCodeData = pixResponse.qrCode || pixResponse.qr_code || pixCode;
+            // Usa o campo qrCodeImage que já tem o prefixo data:image/png;base64,
+            const qrCodeData = pixResponse.qrCodeImage || pixResponse.qrCode || pixResponse.qr_code || pixCode;
             
-            console.log('🔍 Dados extraídos da API Witetec:', {
+            console.log('🔍 Dados extraídos da API SyncPay:', {
                 transactionHash,
                 pixCode,
                 qrCodeData,
@@ -396,7 +423,7 @@ class PaymentSystem {
                 fullResponse: pixResponse
             });
             
-            console.log('Dados extraídos da API Witetec:', {
+            console.log('Dados extraídos da API SyncPay:', {
                 transactionHash,
                 pixCode,
                 qrCodeData,
@@ -412,7 +439,7 @@ class PaymentSystem {
                 pixResponse: pixResponse
             };
         } catch (error) {
-            console.error('Erro ao gerar PIX via Witetec:', error);
+            console.error('Erro ao gerar PIX via SyncPay:', error);
             
             // Mostra erro detalhado para debug
             console.error('Detalhes do erro:', {
@@ -423,7 +450,7 @@ class PaymentSystem {
             
             // Fallback para PIX simulado se a API falhar
             console.log('Usando sistema de fallback para PIX simulado...');
-            console.log('Motivo: API Witetec falhou -', error.message);
+            console.log('Motivo: API SyncPay falhou -', error.message);
             
             const pixCode = this.generatePixCode(price, transactionId);
             return {
@@ -434,7 +461,7 @@ class PaymentSystem {
                 qrCodeData: pixCode,
                 error: error.message,
                 isFallback: true,
-                fallbackReason: 'API Witetec falhou: ' + error.message
+                fallbackReason: 'API SyncPay falhou: ' + error.message
             };
         }
     }
@@ -596,7 +623,7 @@ class PaymentSystem {
             warningDiv.innerHTML = `
                 <p style="font-size: 14px; color: #92400e; margin: 0;">
                     <strong>⚠️ Modo de Demonstração:</strong> Sistema usando PIX simulado.<br>
-                    <small>API Witetec: ${pixData.fallbackReason}</small>
+                    <small>API SyncPay: ${pixData.fallbackReason}</small>
                 </p>
             `;
             
@@ -606,7 +633,7 @@ class PaymentSystem {
                 pixSection.insertBefore(warningDiv, pixSection.firstChild);
             }
         } else {
-            console.log('✅ API Witetec funcionando corretamente - QR Code real será gerado');
+            console.log('✅ API SyncPay funcionando corretamente - QR Code real será gerado');
         }
         
         // Gera QR Code
@@ -624,10 +651,10 @@ class PaymentSystem {
         }
         qrContainer.innerHTML = ''; // Limpa o container
 
-        // 1. Tenta carregar QR Code de imagem direta da Witetec (se for uma URL)
+        // 1. Tenta carregar QR Code de imagem direta da SyncPay (se for uma URL)
         if (data && typeof data === 'string' && data.startsWith('http')) {
             try {
-                console.log('🔄 Tentando carregar QR Code de imagem direta da Witetec...');
+                console.log('🔄 Tentando carregar QR Code de imagem direta da SyncPay...');
                 const img = document.createElement('img');
                 img.src = data;
                 img.style.cssText = `
@@ -652,12 +679,51 @@ class PaymentSystem {
             }
         }
 
-        // 1.5. Tenta carregar QR Code em base64 da Witetec (novo)
+        // 1.5. Tenta carregar QR Code em base64 da SyncPay
         if (data && typeof data === 'string' && data.startsWith('data:image/')) {
             try {
-                console.log('🔄 Tentando carregar QR Code em base64 da Witetec...');
-                const img = document.createElement('img');
-                img.src = data;
+                console.log('🔄 Tentando carregar QR Code em base64 da SyncPay...');
+                console.log('Dados base64 recebidos:', data.substring(0, 100) + '...');
+                console.log('Tamanho dos dados:', data.length);
+                console.log('Tipo de dados:', typeof data);
+                
+                // Verifica se o base64 está duplicado e corrige
+                let correctedData = data;
+                if (data.includes('data:image/png;base64,data:image/png;base64,')) {
+                    console.log('⚠️ Base64 duplicado detectado, corrigindo...');
+                    correctedData = data.replace('data:image/png;base64,data:image/png;base64,', 'data:image/png;base64,');
+                    console.log('✅ Base64 corrigido');
+                }
+                
+                // Verifica se o base64 é válido e tem tamanho adequado
+                try {
+                    const base64Data = correctedData.replace('data:image/png;base64,', '');
+                    console.log('Base64 puro (primeiros 50 chars):', base64Data.substring(0, 50));
+                    console.log('Tamanho do base64 puro:', base64Data.length);
+                    
+                    // Verifica se o tamanho é adequado para um QR Code (mínimo ~500 chars)
+                    if (base64Data.length < 500) {
+                        console.warn('⚠️ Base64 muito pequeno para um QR Code válido:', base64Data.length);
+                        throw new Error('Base64 muito pequeno para QR Code válido');
+                    }
+                    
+                    // Tenta decodificar para verificar se é válido
+                    const decoded = atob(base64Data);
+                    console.log('✅ Base64 válido, tamanho decodificado:', decoded.length);
+                    
+                    // Verifica se o tamanho decodificado é adequado (mínimo ~300 bytes)
+                    if (decoded.length < 300) {
+                        console.warn('⚠️ Imagem decodificada muito pequena:', decoded.length);
+                        throw new Error('Imagem decodificada muito pequena');
+                    }
+                    
+                } catch (base64Error) {
+                    console.error('❌ Base64 inválido ou muito pequeno:', base64Error);
+                    throw new Error('Base64 inválido ou muito pequeno: ' + base64Error.message);
+                }
+                
+                // Usa método mais robusto para carregar a imagem
+                const img = new Image();
                 img.style.cssText = `
                     width: 200px;
                     height: 200px;
@@ -666,11 +732,22 @@ class PaymentSystem {
                     display: block;
                     border: 2px solid #e5e7eb;
                 `;
+                
                 await new Promise((resolve, reject) => {
-                    img.onload = resolve;
-                    img.onerror = reject;
-                    setTimeout(reject, 3000); // Timeout de 3 segundos (OTIMIZADO)
+                    img.onload = () => {
+                        console.log('✅ Imagem carregada com sucesso!');
+                        resolve();
+                    };
+                    img.onerror = (error) => {
+                        console.error('❌ Erro no carregamento da imagem:', error);
+                        reject(new Error('Falha ao carregar imagem do QR Code'));
+                    };
+                    setTimeout(() => reject(new Error('Timeout ao carregar imagem')), 5000);
+                    
+                    // Define o src por último
+                    img.src = correctedData;
                 });
+                
                 qrContainer.appendChild(img);
                 console.log('✅ QR Code em base64 carregado com sucesso!');
                 return true; // Sucesso
@@ -681,7 +758,7 @@ class PaymentSystem {
         }
 
         // 2. Tenta gerar QR Code com a biblioteca local (se for um código PIX)
-        if (data && typeof data === 'string' && data.startsWith('000201')) {
+        if (data && typeof data === 'string' && (data.startsWith('000201') || data.length > 50)) {
             try {
                 // Verifica se a biblioteca QRCode está disponível
                 if (typeof QRCode === 'undefined') {
@@ -706,12 +783,31 @@ class PaymentSystem {
 
                 console.log('✅ QRCode library available, generating QR code from PIX string...');
                 console.log('Data for QR code:', data);
+                
+                // Se o data não for um código PIX válido, tenta extrair do base64
+                let pixCode = data;
+                if (!data.startsWith('000201') && data.includes('data:image/png;base64,')) {
+                    try {
+                        const base64Data = data.replace('data:image/png;base64,', '');
+                        const decoded = atob(base64Data);
+                        // Tenta encontrar um código PIX na string decodificada
+                        const pixMatch = decoded.match(/000201[0-9A-F]+/);
+                        if (pixMatch) {
+                            pixCode = pixMatch[0];
+                            console.log('✅ Código PIX extraído do base64:', pixCode.substring(0, 50) + '...');
+                        } else {
+                            console.log('⚠️ Nenhum código PIX encontrado no base64, usando dados originais');
+                        }
+                    } catch (error) {
+                        console.log('⚠️ Erro ao extrair código PIX do base64:', error);
+                    }
+                }
 
                 const canvas = document.createElement('canvas');
                 qrContainer.appendChild(canvas);
 
                 let success = await new Promise(resolve => {
-                    QRCode.toCanvas(canvas, data, {
+                    QRCode.toCanvas(canvas, pixCode, {
                         width: 200,
                         height: 200,
                         margin: 2,
@@ -913,25 +1009,13 @@ class PaymentSystem {
         }
     }
     
-    showCopySuccess() {
-        const copyButton = document.querySelector('.pix-btn-primary');
-        if (copyButton) {
-            const originalText = copyButton.textContent;
-            copyButton.textContent = 'Copiado!';
-            copyButton.style.backgroundColor = '#059669';
-            
-            setTimeout(() => {
-                copyButton.textContent = originalText;
-                copyButton.style.backgroundColor = '';
-            }, 2000);
-        }
-    }
+    // Função showCopySuccess removida - não é mais necessária
     
     showLoading() {
         const buyButton = document.querySelector('#compreAgoraBtn');
         if (buyButton) {
             buyButton.disabled = true;
-            buyButton.innerHTML = '<span class="text-lg h-[18px] w-[18px] animate-spin">⏳</span> Gerando PIX...';
+            buyButton.innerHTML = '<span class="text-lg h-[18px] w-[18px] animate-spin">⏳</span> Redirecionando...';
         }
     }
     
@@ -946,7 +1030,7 @@ class PaymentSystem {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M43.4187 3.4715C41.2965 2.28554 38.711 2.28554 36.5889 3.4715L8.07673 19.4055C6.19794 20.4555 4.97252 22.4636 5.02506 24.7075C5.36979 39.43 10.1986 63.724 37.0183 76.9041C38.8951 77.8264 41.1125 77.8264 42.9893 76.9041C69.809 63.724 74.6377 39.43 74.9825 24.7075C75.035 22.4636 73.8096 20.4555 71.9308 19.4055L43.4187 3.4715ZM39.5159 8.7091C39.8191 8.53968 40.1885 8.53968 40.4916 8.7091L68.9826 24.6313C68.6493 38.3453 64.2154 59.7875 40.343 71.5192C40.135 71.6214 39.8725 71.6214 39.6646 71.5192C15.7921 59.7875 11.3583 38.3453 11.025 24.6313L39.5159 8.7091Z" fill="currentColor"></path>
                     </svg>
                 </span>
-                Compre agora
+                Ir para Pagamento
             `;
         }
     }
@@ -955,33 +1039,7 @@ class PaymentSystem {
         alert(message);
     }
     
-    showModalLoading() {
-        const qrContainer = document.getElementById('pixQRCode');
-        if (qrContainer) {
-            qrContainer.innerHTML = `
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
-                    <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
-                    <div style="font-size: 14px; color: #6b7280; text-align: center;">
-                        Gerando PIX...<br>
-                        <small>Aguarde um momento</small>
-                    </div>
-                </div>
-            `;
-        }
-        
-        const pixCodeInput = document.getElementById('pixCode');
-        if (pixCodeInput) {
-            pixCodeInput.value = 'Gerando código PIX...';
-            pixCodeInput.disabled = true;
-        }
-    }
-    
-    hideModalLoading() {
-        const pixCodeInput = document.getElementById('pixCode');
-        if (pixCodeInput) {
-            pixCodeInput.disabled = false;
-        }
-    }
+    // Funções do modal removidas - não são mais necessárias
     
     startStatusCheck(transactionHash) {
         // Verifica se o transactionHash é válido

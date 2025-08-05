@@ -36,15 +36,7 @@
     box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
 }
 
-/* Modal PIX */
-.pix-modal {
-    backdrop-filter: blur(4px);
-}
-
-.pix-modal-content {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e5e7eb;
-}
+/* Modal PIX removido - redirecionamento direto implementado */
 
 /* Botão de compra */
 #compreAgoraBtn {
@@ -107,10 +99,7 @@
         min-height: 60px;
     }
     
-    .pix-modal-content {
-        margin: 0 16px;
-        max-width: 100%;
-    }
+    /* Modal PIX removido */
 }
 
 /* Melhorias de acessibilidade */
@@ -148,23 +137,7 @@
     z-index: 1000;
 }
 
-/* Melhorias no modal PIX */
-.pix-modal .pix-input {
-    font-family: 'Courier New', monospace;
-    letter-spacing: 1px;
-}
-
-.pix-modal .pix-btn {
-    transition: all 0.2s ease;
-}
-
-.pix-modal .pix-btn:hover {
-    transform: translateY(-1px);
-}
-
-.pix-modal .pix-btn:active {
-    transform: translateY(0);
-}
+/* Estilos do modal PIX removidos - redirecionamento direto implementado */
 
 /* Status de pagamento */
 .payment-status {

@@ -2553,7 +2553,7 @@ src="https://www.facebook.com/tr?id=1377911686641050&ev=PageView&noscript=1"
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M43.4187 3.4715C41.2965 2.28554 38.711 2.28554 36.5889 3.4715L8.07673 19.4055C6.19794 20.4555 4.97252 22.4636 5.02506 24.7075C5.36979 39.43 10.1986 63.724 37.0183 76.9041C38.8951 77.8264 41.1125 77.8264 42.9893 76.9041C69.809 63.724 74.6377 39.43 74.9825 24.7075C75.035 22.4636 73.8096 20.4555 71.9308 19.4055L43.4187 3.4715ZM39.5159 8.7091C39.8191 8.53968 40.1885 8.53968 40.4916 8.7091L68.9826 24.6313C68.6493 38.3453 64.2154 59.7875 40.343 71.5192C40.135 71.6214 39.8725 71.6214 39.6646 71.5192C15.7921 59.7875 11.3583 38.3453 11.025 24.6313L39.5159 8.7091Z" fill="currentColor"></path>
                         </svg>
                     </span>
-                    Compre agora
+                    Ir para Pagamento
                 </button>
             </div>
             <div style="position:fixed;top:1px;left:1px;width:1px;height:0px;padding:0px;margin:-1px;overflow:hidden;clip:rect(0px,0px,0px,0px);white-space:nowrap;border-width:0px;display:none"></div>
@@ -2585,147 +2585,22 @@ src="https://www.facebook.com/tr?id=1377911686641050&ev=PageView&noscript=1"
     </div>
 </div>
 
-<!-- Pix Payment Modal -->
+<!-- Sistema de Redirecionamento Direto -->
 <style>
-.pix-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+.payment-redirect {
+    transition: all 0.3s ease;
 }
 
-.pix-modal.show {
-    display: flex;
-    opacity: 1;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.pix-modal-content {
-    background: white;
-    border-radius: 8px;
-    padding: 24px;
-    max-width: 400px;
-    width: 100%;
-    margin: 0 16px;
-}
-
-.pix-hidden {
-    display: none !important;
-}
-
-.pix-grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.pix-btn {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.pix-btn-primary {
-    background-color: #3b82f6;
-    color: white;
-}
-
-.pix-btn-primary:hover {
-    background-color: #2563eb;
-}
-
-.pix-btn-secondary {
-    background-color: #f3f4f6;
-    color: #374151;
-    border: 1px solid #d1d5db;
-}
-
-.pix-btn-secondary:hover {
-    background-color: #e5e7eb;
-}
-
-.pix-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.pix-label {
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    color: #374151;
-    margin-bottom: 4px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.payment-redirect:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
 }
 </style>
 
-<div id="pixModal" class="pix-modal">
-    <div class="pix-modal-content">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-            <h2 style="font-size: 20px; font-weight: bold; color: #1f2937;">Pagamento via PIX</h2>
-            <button onclick="closePixPayment()" style="background: none; border: none; color: #6b7280; cursor: pointer; font-size: 24px;">×</button>
-        </div>
-        
-        <div id="customerForm" style="margin-bottom: 24px;" class="pix-hidden">
-            <!-- Form hidden - no longer needed -->
-        </div>
-        
-        <div id="pixPaymentSection" style="text-align: center; margin-bottom: 24px;">
-            <div style="background-color: #f3f4f6; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
-                <div id="pixQRCode" style="display: flex; justify-content: center; margin-bottom: 16px;">
-                    <!-- QR Code will be generated here -->
-                </div>
-                <p style="font-size: 14px; color: #6b7280; margin-bottom: 8px;">Escaneie o QR Code com seu app bancário</p>
-                                        <p style="font-size: 18px; font-weight: bold; color: #059669;">R$ 19,98</p>
-            </div>
-            
-            <div style="margin-bottom: 16px;">
-                <p style="font-size: 14px; color: #6b7280; margin-bottom: 8px;">Ou copie o código PIX:</p>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <input type="text" id="pixCode" readonly="" class="pix-input" style="flex: 1;" value="">
-                    <button onclick="copyPixCode()" class="pix-btn pix-btn-primary">
-                        Copiar
-                    </button>
-                </div>
-            </div>
-            
-            <div style="background: linear-gradient(135deg, #059669, #10b981); border: 2px solid #059669; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-                    <div style="font-size: 24px;">💎</div>
-                    <div style="font-size: 16px; font-weight: bold; color: white;">Crédito Automático</div>
-                </div>
-                <p style="font-size: 14px; color: white; margin: 0; line-height: 1.4;">
-                    <strong>✅ Garantido:</strong> Após a confirmação do pagamento, seus diamantes serão creditados automaticamente na sua conta Free Fire em até 2 minutos.
-                </p>
-            </div>
-            
+/* CSS do modal PIX removido - não é mais necessário */
+</style>
 
-        </div>
-        
-
-    </div>
-</div>
+<!-- Sistema de Redirecionamento Direto - Modal removido -->
 
 <script src="../../scripts/utms/latest-2.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
 
@@ -2789,7 +2664,7 @@ src="https://www.facebook.com/tr?id=1377911686641050&ev=PageView&noscript=1"
             // Disponibiliza globalmente
             window.loadQRCodeLibrary = loadQRCodeLibrary;
         </script>
-    <script src="js/witetec-config.js"></script>
+         <script src="js/syncpay-config.js"></script>
 <script src="js/payment-system.js"></script>
 
 <script>
