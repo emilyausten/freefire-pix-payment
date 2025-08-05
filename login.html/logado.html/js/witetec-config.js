@@ -1,4 +1,4 @@
-// Configuração da API Witetec PIX
+// Configuração da API Witetec PIX - Baseada no Guia Completo
 const WITETEC_CONFIG = {
     // URL da API Witetec
     apiUrl: 'https://api.witetec.net/transactions',
@@ -14,14 +14,14 @@ const WITETEC_CONFIG = {
     },
     
     // Configurações de timeout (OTIMIZADO PARA VELOCIDADE)
-    timeout: 5000, // 5 segundos (reduzido de 10s para 5s)
+    timeout: 5000, // 5 segundos
     
     // Configurações de retry (OTIMIZADO PARA VELOCIDADE)
-    retryAttempts: 2, // Reduzido de 3 para 2 tentativas
-    retryDelay: 1000, // 1 segundo (reduzido de 2s para 1s)
+    retryAttempts: 2, // 2 tentativas
+    retryDelay: 1000, // 1 segundo
     
-    // Valor mínimo em centavos (R$ 19,98)
-    minAmount: 1998
+    // Valor mínimo em centavos (R$ 5,00)
+    minAmount: 500
 };
 
 // Função para fazer requisição para API Witetec com retry otimizado
@@ -97,7 +97,7 @@ async function callWitetecAPI(data = {}) {
     throw lastError;
 }
 
-// Função para gerar PIX via Witetec
+// Função para gerar PIX via Witetec - Baseada no Guia Completo
 async function generatePixWithWitetec(amount, description, customerData = {}) {
     try {
         // Validar valor mínimo
@@ -109,7 +109,7 @@ async function generatePixWithWitetec(amount, description, customerData = {}) {
         // Gerar referência única para o vendedor
         const sellerExternalRef = `SPO_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
         
-        // Preparar payload para a API Witetec
+        // Preparar payload para a API Witetec - Baseado no Guia Completo
         const pixPayload = {
             amount: amountInCents,
             method: "PIX",
@@ -140,7 +140,7 @@ async function generatePixWithWitetec(amount, description, customerData = {}) {
         
         console.log('📥 Resposta da Witetec PIX:', response);
         
-        // Verificar se a API retornou sucesso
+        // Verificar se a API retornou sucesso - Baseado no Guia Completo
         if (!response.status || !response.data) {
             console.error('❌ Resposta da API não contém dados válidos:', response);
             throw new Error('Resposta da API não contém dados válidos');
@@ -152,7 +152,7 @@ async function generatePixWithWitetec(amount, description, customerData = {}) {
             throw new Error('Resposta PIX API sem código PIX');
         }
         
-        // Formatar resposta compatível com o formato anterior
+        // Formatar resposta compatível com o formato anterior - Baseado no Guia Completo
         const formattedResponse = {
             id: response.data.id,
             paymentId: response.data.id,
