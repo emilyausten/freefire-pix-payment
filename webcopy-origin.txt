@@ -1,0 +1,123 @@
+Uri: https://cdn.utmify.com.br/scripts/utms/latest.js
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\scripts\utms\latest-2.js
+Content Type: text/javascript
+
+Uri: https://recargajogo8anos.site/login.html/logado.html/css/payment-styles.css
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\login.html\logado.html\css\payment-styles.css
+Content Type: text/css
+
+Uri: https://recargajogo8anos.site/login.html/logado.html/css/simplified-styles.css
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\login.html\logado.html\css\simplified-styles.css
+Content Type: text/css
+
+Uri: https://recargajogo8anos.site/login.html/logado.html/images/qoj9h7u8ABA4.jpg
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\login.html\logado.html\images\qoj9h7u8ABA4.jpg
+Content Type: image/jpeg
+
+Uri: https://recargajogo8anos.site/login.html/logado.html/index.html
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\login.html\logado.html\index.html
+Content Type: text/html
+
+Uri: https://recargajogo8anos.site/login.html/logado.html/js/bullspay-config.js
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\login.html\logado.html\js\bullspay-config.js
+Content Type: application/x-javascript
+
+Uri: https://recargajogo8anos.site/login.html/logado.html/js/payment-system.js
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\login.html\logado.html\js\payment-system.js
+Content Type: application/x-javascript
+
+Uri: https://www.facebook.com/tr?id=554379850885356&ev=PageView&noscript=1
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\tr-2
+Content Type: text/plain
+
+Uri: https://www.googletagmanager.com/gtag/js?id=G-41T5QTMNQP
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\gtag\js
+Content Type: application/javascript
+
+.min.js
+Content Type: application/x-javascript
+
+Uri: https://8anosff.site/wp-includes/js/dist/script-modules/interactivity/index.min.js?ver=55aebb6e0a16726baffb
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\wp-includes\js\dist\script-modules\interactivity\index.min.js
+Content Type: application/x-javascript
+
+Uri: https://8anosff.site/wp-json/
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\wp-json\index.htm
+Content Type: application/json
+
+Uri: https://8anosff.site/xmlrpc.php?rsd
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\xmlrpc.php
+Content Type: text/xml
+
+Uri: https://cdn.utmify.com.br/scripts/utms/latest.js
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\scripts\utms\latest.js
+Content Type: text/javascript
+
+Uri: https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\css2
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/roboto/v48/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\s\roboto\v48\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bWmT.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v48/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\s\roboto\v48\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbWmT.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v48/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuYjammT.ttf
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\s\roboto\v48\KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuYjammT.ttf
+Content Type: font/ttf
+
+Uri: https://recargajogo8anos.site/
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\index.htm
+Content Type: text/html
+
+Uri: https://recargajogo8anos.site/images/bvv.png
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\images\bvv.png
+Content Type: image/png
+
+Uri: https://recargajogo8anos.site/images/FINAL3.png
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\images\FINAL3.png
+Content Type: image/png
+
+Uri: https://recargajogo8anos.site/images/garena-logo.png
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\images\garena-logo.png
+Content Type: image/png
+
+Uri: https://recargajogo8anos.site/images/gifacerto.gif
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\images\gifacerto.gif
+Content Type: image/gif
+
+Uri: https://recargajogo8anos.site/images/icon.ico
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\images\icon.ico
+Content Type: image/x-icon
+
+Uri: https://recargajogo8anos.site/images/perfil.svg
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\images\perfil.svg
+Content Type: image/svg+xml
+
+Uri: https://recargajogo8anos.site/js/confetti.browser.min.js
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\js\confetti.browser.min.js
+Content Type: application/x-javascript
+
+Uri: https://recargajogo8anos.site/media/answer-wrong.mp3
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\media\answer-wrong.mp3
+Content Type: audio/mpeg
+
+Uri: https://recargajogo8anos.site/media/correto.mp3
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\media\correto.mp3
+Content Type: audio/mpeg
+
+Uri: https://recargajogo8anos.site/media/itachi.mp3
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\media\itachi.mp3
+Content Type: audio/mpeg
+
+Uri: https://recargajogo8anos.site/style.html
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\style.html
+Content Type: text/html
+
+Uri: https://www.facebook.com/tr?id=554379850885356&ev=PageView&noscript=1
+File Name: C:\Downloaded Web Sites\recargajogo8anos.site\tr
+Content Type: text/plain
+

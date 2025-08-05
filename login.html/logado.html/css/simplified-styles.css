@@ -1,0 +1,210 @@
+/* Estilos para Sistema Simplificado - 4 Opções de Preço */
+
+/* Opções de valor simplificadas */
+.diamond-option {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.diamond-option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #cbd5e1;
+}
+
+.diamond-option.selected {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border-color: #dc2626;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.25);
+}
+
+.diamond-option.selected::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+
+/* Texto dos valores */
+.diamond-option .text-sm\/none {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+.diamond-option.selected .text-sm\/none {
+    color: #dc2626;
+}
+
+/* Ícone de diamante */
+.diamond-option img {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.diamond-option.selected img {
+    filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
+}
+
+/* Grid responsivo melhorado */
+#diamondOptions {
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    #diamondOptions {
+        gap: 0.75rem;
+    }
+    
+    .diamond-option {
+        min-height: 70px;
+    }
+    
+    .diamond-option .text-sm\/none {
+        font-size: 1rem;
+    }
+}
+
+/* Animação de entrada */
+.diamond-option {
+    animation: slideInUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.diamond-option:nth-child(1) { animation-delay: 0.1s; }
+.diamond-option:nth-child(2) { animation-delay: 0.2s; }
+.diamond-option:nth-child(3) { animation-delay: 0.3s; }
+.diamond-option:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Melhorias no botão de compra */
+#compreAgoraBtn {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    border: none;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    transition: all 0.3s ease;
+}
+
+#compreAgoraBtn:hover {
+    background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+}
+
+#compreAgoraBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+/* Total e bônus */
+.total-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+}
+
+.total-section .font-bold {
+    color: #dc2626;
+    font-size: 1.25rem;
+}
+
+/* Estados de loading */
+.loading-state {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.loading-state::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #dc2626;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Melhorias de acessibilidade */
+.diamond-option:focus {
+    outline: 3px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Tooltip informativo */
+.diamond-option {
+    position: relative;
+}
+
+.diamond-option::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-bottom: 8px;
+}
+
+.diamond-option::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1f2937;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-bottom: 3px;
+}
+
+.diamond-option:hover::after,
+.diamond-option:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsividade para telas grandes */
+@media (min-width: 1024px) {
+    #diamondOptions {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .diamond-option {
+        min-height: 80px;
+    }
+    
+    .diamond-option .text-sm\/none {
+        font-size: 1.2rem;
+    }
+} 
